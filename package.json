@@ -1,0 +1,37 @@
+{
+  "name": "dat-nexus-app",
+  "version": "1.0.0",
+  "description": "A social feeds and profiles application",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "lessc ./css/main.less ./css/main.css",
+    "build:js": "browserify -o ./js/main.build.js ./js/main.js",
+    "build": "npm run build:js && npm run build:css",
+    "test": "standard --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beakerbrowser/dat-nexus-app.git"
+  },
+  "keywords": [
+    "dat",
+    "beaker",
+    "p2p",
+    "social",
+    "feeds"
+  ],
+  "author": "Paul Frazee <pfrazee@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/beakerbrowser/dat-nexus-app/issues"
+  },
+  "homepage": "https://github.com/beakerbrowser/dat-nexus-app#readme",
+  "dependencies": {
+    "choo": "^5.6.2",
+    "dat-nexus-api": "^1.0.0",
+    "moment": "^2.18.1"
+  },
+  "devDependencies": {
+    "less": "^2.7.2"
+  }
+}
