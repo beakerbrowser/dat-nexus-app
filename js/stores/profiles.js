@@ -98,7 +98,7 @@ module.exports = async function profileStore (state, emitter) {
   async function readProfile (url, opts = {}) {
     await NexusAPI.addArchive(url)
     var profile = await NexusAPI.getProfile(url)
-    profile.numBroadcasts = await NexusAPI.countBroadcasts(url)
+    profile.numBroadcasts = await NexusAPI.countBroadcasts({author: url})
     profile.isFollowed = await getIsFollowed(state, profile)
     if (opts.getFollowProfiles) {
       profile.followProfiles = await Promise.all(profile.followUrls.map(NexusAPI.getProfile))
