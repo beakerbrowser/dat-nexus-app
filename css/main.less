@@ -6,13 +6,20 @@
 @import "./com/buttons";
 @import "./com/messages";
 @import "./com/link";
+@import "./com/feed";
+@import "./com/profile";
+@import "./com/post-form";
 
 body {
   overflow: auto;
+  font-family: system,-apple-system,".SFNSDisplay-Regular","Helvetica Neue",Helvetica,"Segoe UI",sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #333;
 }
 
 main {
-  width: 825px;
+  width: 780px;
   margin: 0 auto;
 
   h1 {
@@ -29,78 +36,6 @@ main {
   }
 }
 
-.profile {
-  display: flex;
-
-  .avatar {
-    width: 35px;
-    height: 35px;
-    border-radius: 2px;
-  }
-
-  .profile-info {
-    flex: 1;
-    padding-left: @padding-component;
-  }
-
-  a {
-    &:extend(.link);
-
-    &:hover {
-      &:extend(.link:hover);
-    }
-  }
-
-  h1 a {
-    color: inherit;
-  }
-}
-
-form#new-post {
-  margin-bottom: @padding-component;
-
-  textarea {
-    border: 1px solid @border-menu;
-    border-radius: 2px;
-    display: block;
-    width: 100%;
-    height: 35px;
-    padding: 6px @padding-component--tight;
-    margin-bottom: 1rem;
-    resize: none;
-    overflow: hidden;
-    transition: height .2s ease;
-    cursor: text;
-    font-size: 14px;
-    letter-spacing: .3px;
-
-    &.has-content,
-    &:focus {
-      border-color: @blue;
-      height: 75px;
-    }
-  }
-
-  .new-post-btns {
-    display: flex;
-
-    & > div:first-child {
-      flex: 1;
-    }
-
-    .btn {
-      &:not(.primary) {
-        font-weight: normal;
-      }
-
-      i {
-        margin-left: @margin-icon;
-      }
-    }
-  }
-
-}
-
 .grid {
   &:extend(.flex);
   flex-wrap: nowrap;
@@ -108,52 +43,8 @@ form#new-post {
 }
 
 .feed-container {
-  width: 60%;
+  width: 70%;
   padding-right: @padding-component--thick;
-}
-
-.feed .update {
-  &:extend(.flex);
-  flex-wrap: nowrap;
-  padding: @padding-component--tight 0;
-
-  .metadata * {
-    line-height: 100%;
-    vertical-align: top;
-  }
-
-  .name {
-    &:extend(.link);
-    cursor: pointer;
-
-    &:hover {
-      &:extend(.link:hover);
-    }
-  }
-
-  .date {
-    color: @color-text--muted;
-    cursor: pointer;
-    margin-left: 3px;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  .avatar {
-    border-radius: 2px;
-    width: 35px;
-    height: 35px;
- }
-
-  .content {
-    margin-top: 0;
-  }
-
-  .container {
-    margin-left: @padding-component--tight;
-  }
 }
 
 .follows {
@@ -183,7 +74,7 @@ form {
 
 .sidebar {
   background: #fff;
-  width: 40%;
+  width: 30%;
 
   .buttons {
     margin-bottom: @padding-component--tight;

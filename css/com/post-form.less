@@ -1,0 +1,43 @@
+form#new-post {
+  margin-bottom: @padding-component;
+
+  textarea {
+    border: 1px solid @border-menu;
+    border-radius: 2px;
+    display: block;
+    width: 100%;
+    height: 35px;
+    padding: 6px @padding-component--tight;
+    margin-bottom: 1rem;
+    resize: none;
+    overflow: hidden;
+    transition: height .2s ease;
+    cursor: text;
+    font-size: 14px;
+    letter-spacing: .3px;
+
+    &.has-content,
+    &:focus {
+      border-color: @blue;
+      height: 75px;
+    }
+  }
+
+  .new-post-btns {
+    display: flex;
+
+    & > div:first-child {
+      flex: 1;
+    }
+
+    .btn {
+      &:not(.primary) {
+        font-weight: normal;
+      }
+
+      i {
+        margin-left: @margin-icon;
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.profile {
+  display: flex;
+
+  .avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 2px;
+  }
+
+  .profile-info {
+    flex: 1;
+    padding-left: @padding-component;
+  }
+
+  a {
+    &:extend(.link);
+
+    &:hover {
+      &:extend(.link:hover);
+    }
+  }
+
+  h1 a {
+    color: inherit;
+  }
+}

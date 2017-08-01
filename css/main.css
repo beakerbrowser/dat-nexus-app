@@ -4,10 +4,6 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: system, -apple-system, ".SFNSDisplay-Regular", "Helvetica Neue", Helvetica, "Segoe UI", sans-serif;
-  font-size: 13px;
-  line-height: 1.6;
-  color: #333;
 }
 body,
 html {
@@ -69,8 +65,8 @@ hr {
 .flex,
 .btn-bar,
 .message,
-.grid,
-.feed .update {
+.feed .broadcast,
+.grid {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -374,8 +370,8 @@ a.btn span {
   text-decoration: underline;
 }
 .link,
-.profile a,
-.feed .update .name {
+.feed .broadcast .name,
+.profile a {
   color: #3064c9;
   cursor: pointer;
   border: none;
@@ -384,27 +380,47 @@ a.btn span {
   padding: 0;
 }
 .link:hover,
-.profile a:hover,
-.feed .update .name:hover {
+.feed .broadcast .name:hover,
+.profile a:hover {
   text-decoration: underline;
 }
-body {
-  overflow: auto;
+.feed {
+  margin-bottom: 2rem;
 }
-main {
-  width: 825px;
-  margin: 0 auto;
+.feed .broadcast {
+  flex-wrap: nowrap;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-bottom-width: 0;
 }
-main h1 {
-  font-size: 18px;
-  line-height: 1;
-  margin-bottom: 10px;
+.feed .broadcast:last-child {
+  border-bottom-width: 1px;
 }
-main h2 {
-  font-weight: 400;
-  font-size: 13px;
-  letter-spacing: .5px;
-  color: #b8b8b8;
+.feed .broadcast .metadata * {
+  line-height: 100%;
+  vertical-align: top;
+}
+.feed .broadcast .name {
+  cursor: pointer;
+}
+.feed .broadcast .date {
+  color: #707070;
+  cursor: pointer;
+  margin-left: 3px;
+}
+.feed .broadcast .date:hover {
+  text-decoration: underline;
+}
+.feed .broadcast .avatar {
+  border-radius: 2px;
+  width: 35px;
+  height: 35px;
+}
+.feed .broadcast .container {
+  margin: 0 10px;
+}
+.feed .broadcast .content {
+  margin: 0;
 }
 .profile {
   display: flex;
@@ -456,43 +472,35 @@ form#new-post .new-post-btns .btn:not(.primary) {
 form#new-post .new-post-btns .btn i {
   margin-left: 5px;
 }
+body {
+  overflow: auto;
+  font-family: system, -apple-system, ".SFNSDisplay-Regular", "Helvetica Neue", Helvetica, "Segoe UI", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #333;
+}
+main {
+  width: 780px;
+  margin: 0 auto;
+}
+main h1 {
+  font-size: 18px;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+main h2 {
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: .5px;
+  color: #b8b8b8;
+}
 .grid {
   flex-wrap: nowrap;
   margin-top: 40px;
 }
 .feed-container {
-  width: 60%;
+  width: 70%;
   padding-right: 40px;
-}
-.feed .update {
-  flex-wrap: nowrap;
-  padding: 10px 0;
-}
-.feed .update .metadata * {
-  line-height: 100%;
-  vertical-align: top;
-}
-.feed .update .name {
-  cursor: pointer;
-}
-.feed .update .date {
-  color: #707070;
-  cursor: pointer;
-  margin-left: 3px;
-}
-.feed .update .date:hover {
-  text-decoration: underline;
-}
-.feed .update .avatar {
-  border-radius: 2px;
-  width: 35px;
-  height: 35px;
-}
-.feed .update .content {
-  margin-top: 0;
-}
-.feed .update .container {
-  margin-left: 10px;
 }
 .follows .profile {
   margin-top: 10px;
@@ -513,7 +521,7 @@ form .btn {
 }
 .sidebar {
   background: #fff;
-  width: 40%;
+  width: 30%;
 }
 .sidebar .buttons {
   margin-bottom: 10px;

@@ -85388,7 +85388,7 @@ function renderBroadcast (broadcast) {
     return ''
   }
   return html`
-    <li class="update">
+    <li class="broadcast">
       <a href=${getViewProfileURL(broadcast.author)}><img src=${getAvatarUrl(broadcast.author)} class="avatar" style=${getAvatarStyle(broadcast.author)}/></a>
       <div class="container">
         <div class="metadata">
