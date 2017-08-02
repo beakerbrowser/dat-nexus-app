@@ -54,6 +54,11 @@ exports.getViewFollowsURL = function (profile) {
   return '/#profile/' + url.slice('dat://'.length) + '/follows'
 }
 
+exports.getViewBroadcastURL = function (broadcast) {
+  console.log('broadcast url', broadcast._url)
+  return '/#broadcast/' + broadcast._url.slice('dat://'.length)
+}
+
 exports.getIsFollowed = async function (state, profile) {
   if (state.userProfile && profile._origin !== state.userProfile._origin) {
     return await state.DB().isFollowing(state.userProfile._origin, profile._origin)

@@ -6,6 +6,7 @@
 @import "./com/buttons";
 @import "./com/messages";
 @import "./com/link";
+@import "./com/broadcast";
 @import "./com/feed";
 @import "./com/profile";
 @import "./com/post-form";
@@ -45,6 +46,10 @@ main {
 .feed-container {
   width: 70%;
   padding-right: @padding-component--thick;
+
+  & > :first-child {
+    margin-top: 0;
+  }
 }
 
 .follows {

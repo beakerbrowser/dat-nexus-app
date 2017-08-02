@@ -36,20 +36,20 @@ module.exports = function feedStore (state, emitter) {
   }
 
   emitter.on('like', async broadcast => {
-    state.DB().vote(state.currentArchive, {vote: 1, subject: broadcast._url})
+    state.DB().vote(state.userArchive, {vote: 1, subject: broadcast._url})
     broadcast.votes.currentUsersVote = 1
     broadcast.votes.value++
     broadcast.votes.up++
-    broadcast.votes.upVoters.push(state.currentArchive.url)
+    broadcast.votes.upVoters.push(state.userArchive.url)
     emitter.emit('render')
   })
 
   emitter.on('unlike', async broadcast => {
-    state.DB().vote(state.currentArchive, {vote: 0, subject: broadcast._url})
+    state.DB().vote(state.userArchive, {vote: 0, subject: broadcast._url})
     broadcast.votes.currentUsersVote = 0
     broadcast.votes.value--
     broadcast.votes.up--
-    broadcast.votes.upVoters = broadcast.votes.upVoters.filter(u => u !== state.currentArchive.url)
+    broadcast.votes.upVoters = broadcast.votes.upVoters.filter(u => u !== state.userArchive.url)
     emitter.emit('render')
   })
 }

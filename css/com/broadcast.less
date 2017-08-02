@@ -1,0 +1,70 @@
+.broadcast {
+  &:extend(.flex);
+  flex-wrap: nowrap;
+  padding: @padding-component--tight;
+  border: 1px solid #ddd;
+
+  .metadata * {
+    line-height: 100%;
+    vertical-align: top;
+  }
+
+  .name {
+    &:extend(.link);
+    cursor: pointer;
+
+    &:hover {
+      &:extend(.link:hover);
+    }
+  }
+
+  .date {
+    color: @color-text--muted;
+    cursor: pointer;
+    margin-left: 3px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .avatar {
+    border-radius: 2px;
+    width: 35px;
+    height: 35px;
+  }
+
+  .container {
+    margin: 0 @padding-component--tight;
+  }
+
+  .content {
+    margin: 0.5rem 0 0.5rem;
+  }
+
+  .controls {
+    a {
+      color: #777;
+      cursor: pointer;
+
+      &:hover {
+        color: @blue;
+      }
+    }
+    .count {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .like-action {
+      position: relative;
+      top: 1px;
+      font-size: 17px;
+      margin-left: 30px;
+
+      &:hover {
+        color: @orange;
+      }
+    }
+  }
+}
