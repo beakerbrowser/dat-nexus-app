@@ -26,7 +26,7 @@ module.exports = function renderProfileEditor (state, emit, profile) {
 
   function onSubmit (e) {
     e.preventDefault()
-    emit('update-profile', {
+    state.updateProfile({
       name: e.target.name.value || '',
       bio: e.target.bio.value || ''
     })

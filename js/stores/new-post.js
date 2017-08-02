@@ -1,5 +1,3 @@
-const NexusAPI = require('dat-nexus-api')
-
 module.exports = function newPostStore (state, emitter) {
   state.newPostText = ''
   emitter.on('change-post-text', text => {
@@ -8,7 +6,7 @@ module.exports = function newPostStore (state, emitter) {
   })
   emitter.on('submit-post', async () => {
     try {
-      await NexusAPI.broadcast(state.userProfile._origin, {text: state.newPostText})
+      await state.DB().broadcast(state.userProfile._origin, {text: state.newPostText})
       state.userProfile.numBroadcasts++
     } catch (e) {
       console.error(e)
@@ -18,6 +16,6 @@ module.exports = function newPostStore (state, emitter) {
     // clear form
     state.newPostText = ''
     emitter.emit('render')
-    emitter.emit('load-feed')
+    state.loadMainFeed()
   })
 }

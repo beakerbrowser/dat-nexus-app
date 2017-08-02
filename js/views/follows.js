@@ -9,7 +9,8 @@ module.exports = function followsView (state, emit) {
     return loadingView(state, emit)
   }
   if (!state.currentProfile) {
-    emit('load-profile', {url: 'dat://' + state.params.key, getFollowProfiles: true})
+    // load the profile and rerender
+    state.loadProfile('dat://' + state.params.key, {getFollowProfiles: true})
     return loadingView(state, emit)
   }
   return html`

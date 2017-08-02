@@ -12,6 +12,6 @@ module.exports = function renderFollowBtn (state, emit, profile) {
   }
 
   function toggleFollow () {
-    emit('toggle-follow', profile)
+    state.toggleFollow(profile)
   }
 }

@@ -1,6 +1,5 @@
 /* globals DatArchive */
 
-const NexusAPI = require('dat-nexus-api')
 const {getUserProfileURL, setUserProfileURL, getViewProfileURL, getIsFollowed} = require('../util')
 
 const SUGGESTED_PROFILE_URLS = [
@@ -17,31 +16,61 @@ module.exports = async function profileStore (state, emitter) {
     state.currentProfile = null
   })
 
-  emitter.on('load-profile', async ({url, getFollowProfiles}) => {
+  emitter.on('cachedb-ready', async () => {
+    // validate the userdb and load it
+    const userProfileURL = getUserProfileURL()
+    if (userProfileURL) {
+      try {
+        let userArchive = new DatArchive(userProfileURL)
+        await userArchive.stat('/profile.json') // make sure is valid
+        state.loadUserDB(userProfileURL)
+      } catch (e) {
+        console.error('Failed to load profile', e)
+        // setUserProfileURL(false) TODO - need to give the user a way to recover
+        emitter.emit('userdb-not-available')
+      }
+    }
+  })
+
+  emitter.on('userdb-ready', async () => {
+    // load the user profile and go
+    state.userProfile = await readProfile(state, new DatArchive(getUserProfileURL()))
+    state.isAppLoaded = true
+    emitter.emit('render')
+  })
+
+  emitter.on('userdb-not-available', async () => {
+    // load suggested profiles in the cachedb
+    await state.DB().addArchives(SUGGESTED_PROFILE_URLS)
+    state.isAppLoaded = true
+    emitter.emit('render')
+  })
+
+  state.loadProfile = async (url, {getFollowProfiles} = {}) => {
     try {
-      state.currentProfile = await readProfile(url, {getFollowProfiles})
+      state.currentProfile = await readProfile(state, url, {getFollowProfiles})
     } catch (e) {
       state.error = e
     }
     emitter.emit('render')
-  })
+  }
 
-  emitter.on('toggle-follow', async (profile) => {
+  state.toggleFollow = async profile => {
     try {
       if (profile.isFollowed) {
-        await NexusAPI.unfollow(state.userProfile._origin, profile._origin)
+        await state.DB().unfollow(state.userProfile._origin, profile._origin)
         profile.isFollowed = false
       } else {
-        await NexusAPI.follow(state.userProfile._origin, profile._origin)
+        await state.DB().follow(state.userProfile._origin, profile._origin)
         profile.isFollowed = true
       }
     } catch (e) {
       state.error = e
     }
     emitter.emit('render')
-  })
+  }
 
-  emitter.on('update-profile', async (values) => {
+  state.updateProfile = async (values) => {
     try {
       // create the profile if needed
       var archive
@@ -59,11 +88,11 @@ module.exports = async function profileStore (state, emitter) {
       }
 
       // write the profile
-      await NexusAPI.addArchive(archive)
-      await NexusAPI.setProfile(archive.url, values)
+      await state.DB().addArchive(archive)
+      await state.DB().setProfile(archive.url, values)
 
       // reload
-      state.userProfile = await readProfile(archive.url, {getFollowProfiles: true})
+      state.userProfile = await readProfile(state, archive.url, {getFollowProfiles: true})
       console.log(state.userProfile)
     } catch (e) {
       console.error(e)
@@ -72,38 +101,19 @@ module.exports = async function profileStore (state, emitter) {
       return
     }
     emitter.emit('pushState', getViewProfileURL(state.userProfile))
-  })
+  }
+}
 
-  // read main profile
-  const userProfileURL = getUserProfileURL()
-  if (userProfileURL) {
-    try {
-      let userArchive = new DatArchive(userProfileURL)
-      await userArchive.stat('/profile.json') // make sure is valid
-      await NexusAPI.open(userArchive)
-      state.userProfile = await readProfile(userArchive.url)
-    } catch (e) {
-      console.error('Failed to load profile', e)
-      // setUserProfileURL(false) TODO - need to give the user a way to recover
-    }
+async function readProfile (state, url, opts = {}) {
+  var db = state.DB(url)
+  await db.addArchive(url)
+  var profile = await db.getProfile(url)
+  profile.numBroadcasts = await db.countBroadcasts({author: url})
+  profile.isFollowed = await getIsFollowed(state, profile)
+  if (opts.getFollowProfiles) {
+    profile.followProfiles = await Promise.all(profile.followUrls.map(db.getProfile))
+    profile.followProfiles = profile.followProfiles.filter(Boolean)
+    profile.followProfiles.forEach(s => { s.isFollowed = true })
   }
-  if (!state.userProfile) {
-    // load suggested profiles in a guest session
-    await NexusAPI.open(/* guest session */)
-    await NexusAPI.addArchives(SUGGESTED_PROFILE_URLS)
-  }
-  state.isAppLoaded = true
-  emitter.emit('render')
-
-  async function readProfile (url, opts = {}) {
-    await NexusAPI.addArchive(url)
-    var profile = await NexusAPI.getProfile(url)
-    profile.numBroadcasts = await NexusAPI.countBroadcasts({author: url})
-    profile.isFollowed = await getIsFollowed(state, profile)
-    if (opts.getFollowProfiles) {
-      profile.followProfiles = await Promise.all(profile.followUrls.map(NexusAPI.getProfile))
-      profile.followProfiles.forEach(s => { s.isFollowed = true })
-    }
-    return profile
-  }
+  return profile
 }

@@ -12,11 +12,12 @@ module.exports = function profileView (state, emit) {
     return loadingView(state, emit)
   }
   if (!state.currentProfile) {
-    emit('load-profile', {url: 'dat://' + state.params.key})
+    // load the profile and rerender
+    state.loadProfile('dat://' + state.params.key)
     return loadingView(state, emit)
   }
   if (!state.broadcasts) {
-    emit('load-broadcasts')
+    state.loadUserBroadcasts()
     return loadingView(state, emit)
   }
   var isEditMode = window.location.hash.endsWith('/edit')

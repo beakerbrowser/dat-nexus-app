@@ -57,7 +57,7 @@ exports.getViewFollowsURL = function (profile) {
 
 exports.getIsFollowed = async function (state, profile) {
   if (state.userProfile && profile._origin !== state.userProfile._origin) {
-    return await NexusAPI.isFollowing(state.userProfile._origin, profile._origin)
+    return await state.DB().isFollowing(state.userProfile._origin, profile._origin)
   }
   return false
 }

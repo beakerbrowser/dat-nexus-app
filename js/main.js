@@ -1,6 +1,7 @@
 const choo = require('choo')
 
 var app = choo()
+app.use(require('./stores/dbs'))
 app.use(require('./stores/profiles'))
 app.use(require('./stores/new-post'))
 app.use(require('./stores/feed'))
