@@ -31,6 +31,8 @@ module.exports = async function profileStore (state, emitter) {
         // setUserProfileURL(false) TODO - need to give the user a way to recover
         emitter.emit('userdb-not-available')
       }
+    } else {
+      emitter.emit('userdb-not-available')
     }
   })
 
