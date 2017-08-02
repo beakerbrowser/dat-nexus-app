@@ -10,6 +10,7 @@ module.exports = async function profileStore (state, emitter) {
   state.isAppLoaded = false
   state.userProfile = null
   state.currentProfile = null
+  state.currentArchive = null
 
   emitter.on('pushState', () => {
     // clear page state
@@ -21,8 +22,9 @@ module.exports = async function profileStore (state, emitter) {
     const userProfileURL = getUserProfileURL()
     if (userProfileURL) {
       try {
-        let userArchive = new DatArchive(userProfileURL)
-        await userArchive.stat('/profile.json') // make sure is valid
+        let currentArchive = new DatArchive(userProfileURL)
+        await currentArchive.stat('/profile.json') // make sure is valid
+        state.currentArchive = currentArchive
         state.loadUserDB(userProfileURL)
       } catch (e) {
         console.error('Failed to load profile', e)

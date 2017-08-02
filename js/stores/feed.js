@@ -10,7 +10,11 @@ module.exports = function feedStore (state, emitter) {
 
   state.loadMainFeed = async () => {
     try {
-      state.broadcasts = await state.DB().listBroadcasts({fetchAuthor: true, reverse: true})
+      state.broadcasts = await state.DB().listBroadcasts({
+        fetchAuthor: true,
+        countVotes: true,
+        reverse: true
+      })
     } catch (e) {
       state.error = e
     }
@@ -21,6 +25,7 @@ module.exports = function feedStore (state, emitter) {
     try {
       state.broadcasts = await state.DB(state.currentProfile).listBroadcasts({
         fetchAuthor: true,
+        countVotes: true,
         reverse: true,
         author: state.currentProfile._origin
       })
@@ -29,4 +34,22 @@ module.exports = function feedStore (state, emitter) {
     }
     emitter.emit('render')
   }
+
+  emitter.on('like', async broadcast => {
+    state.DB().vote(state.currentArchive, {vote: 1, subject: broadcast._url})
+    broadcast.votes.currentUsersVote = 1
+    broadcast.votes.value++
+    broadcast.votes.up++
+    broadcast.votes.upVoters.push(state.currentArchive.url)
+    emitter.emit('render')
+  })
+
+  emitter.on('unlike', async broadcast => {
+    state.DB().vote(state.currentArchive, {vote: 0, subject: broadcast._url})
+    broadcast.votes.currentUsersVote = 0
+    broadcast.votes.value--
+    broadcast.votes.up--
+    broadcast.votes.upVoters = broadcast.votes.upVoters.filter(u => u !== state.currentArchive.url)
+    emitter.emit('render')
+  })
 }

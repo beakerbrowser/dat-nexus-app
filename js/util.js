@@ -1,5 +1,4 @@
 /* globals localStorage */
-const NexusAPI = require('dat-nexus-api')
 
 const moment = require('moment')
 
