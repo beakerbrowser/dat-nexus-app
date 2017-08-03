@@ -20,7 +20,7 @@ module.exports = function createProfileModal (state, emit, profile) {
         <div class="modal-main">
           <div class="content">
             <label for="name">Your name</label>
-            <input type="text" name="name" placeholder="Jane Smith" value=${profile ? profile.name : ''}/>
+            <input type="text" name="name" placeholder="Jane Smith" value=${profile ? profile.name : ''} onkeyup=${validateName}/>
 
             <label for="bio">Add a short bio</label>
             <textarea name="bio" placeholder="Optional">${profile ? profile.bio : ''}</textarea>
@@ -28,7 +28,7 @@ module.exports = function createProfileModal (state, emit, profile) {
         </div>
 
         <div class="modal-footer">
-          <button type="submit" class="btn primary">Create profile</button>
+          <button id="submit-register" disabled type="submit" class="btn primary">Create profile</button>
         </div>
       </div>
     </form>
@@ -40,5 +40,14 @@ module.exports = function createProfileModal (state, emit, profile) {
       name: e.target.name.value || '',
       bio: e.target.bio.value || ''
     })
+  }
+
+  function validateName (e) {
+    const btn = document.getElementById('submit-register')
+    if (e.target.value.length) {
+      btn.disabled = false
+    } else {
+      btn.disabled = true
+    }
   }
 }

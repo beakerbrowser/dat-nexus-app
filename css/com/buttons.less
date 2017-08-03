@@ -5,7 +5,7 @@
 .btn {
   position: relative;
   display: inline-block;
-  padding: 0 10px;
+  padding: 0 13px;
   background: transparent;
   background-clip: border-box;
   border: 1px solid transparent;
@@ -25,6 +25,10 @@
 
     &:hover {
       background: @color-bg--btn-primary-hover;
+    }
+
+    &:disabled {
+      background: @color-bg--btn-primary-disabled;
     }
   }
 }
