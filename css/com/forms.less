@@ -1,0 +1,29 @@
+form {
+
+}
+
+input,
+textarea {
+  display: block;
+  border: 1px solid @color-border--input;
+  border-radius: 4px;
+  width: 100%;
+  transition: border 0.1s linear, background-color 0.1s linear;
+  padding: 1px 7px;
+  line-height: 1.875rem;
+  font-size: .8rem;
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+
+  &::-webkit-input-placeholder {
+    color: @color-text--placeholder;
+  }
+}
+
+label {
+  display: block;
+  margin-bottom: 5px !important;
+  font-size: .85rem;
+}

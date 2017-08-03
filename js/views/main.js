@@ -5,6 +5,7 @@ const renderPostForm = require('../com/post-form')
 const renderFeed = require('../com/feed')
 const renderProfile = require('../com/profile')
 const renderProfileEditor = require('../com/profile-editor')
+const renderCreateProfileModal = require('../com/create-profile-modal')
 
 module.exports = function mainView (state, emit) {
   if (!state.isAppLoaded) {
@@ -24,7 +25,7 @@ module.exports = function mainView (state, emit) {
         <div class="sidebar">
           ${state.userProfile
             ? renderProfile(state, emit, state.userProfile)
-            : renderProfileEditor(state, emit)}
+            : renderCreateProfileModal(state, emit)}
         </div>
       </div>
     </main>

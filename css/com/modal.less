@@ -1,0 +1,86 @@
+.modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  background: @color-bg--modal-overlay;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: @color-bg--modal;
+  width: 95%;
+  max-width: 650px;
+  margin: 100px auto;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: rgba(0,0,0,.16) 0 2px 3px;
+}
+
+.modal-header,
+.modal-title,
+.modal-subtitle {
+  text-align: center;
+}
+
+.modal-header,
+.modal-footer {
+  padding: 15px;
+}
+
+.modal-header {
+  font-weight: 400;
+  text-align: center;
+  border-bottom: 1px solid rgba(0,0,0,.15);
+}
+
+.modal-title {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.modal-subtitle {
+  color: @color-text--muted;
+  font-weight: 300;
+  font-size: .85rem;
+  margin: 0;
+}
+
+.modal-main {
+  &:extend(.flex);
+  flex-wrap: nowrap;
+  padding: 40px;
+
+  .content {
+    flex: 1;
+  }
+
+  .modal-graphic {
+    flex: 1;
+  }
+}
+
+.modal-footer {
+  &:extend(.flex);
+  justify-content: space-between;
+  background: #F7F9FB;
+  border-top: 1px solid rgba(0,0,0,.15);
+}
+
+.modal input,
+.modal label,
+.modal textarea {
+  max-width: 350px;
+  margin: auto;
+}
+
+// register modal
+
+.modal.register {
+
+  .modal-footer {
+    justify-content: flex-end;
+  }
+}
