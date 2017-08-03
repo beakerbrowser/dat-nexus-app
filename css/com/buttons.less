@@ -18,6 +18,10 @@
   user-select: none;
   transition: color 0.05s linear, background-color 0.05s linear;
 
+  i {
+    margin-left: 4px;
+  }
+
   &.primary {
     background: @color-bg--btn-primary;
     background: #0070d2;
@@ -29,6 +33,48 @@
 
     &:disabled {
       background: @color-bg--btn-primary-disabled;
+    }
+  }
+
+  &.primary.outline {
+    background: #fff;
+    border-color: @color-border--primary;
+    color: @color-border--primary;
+
+    &:hover {
+      border-color: @color-border--primary-hover;
+      color: @color-border--primary-hover;
+    }
+  }
+
+  &.success {
+    background: @color-bg--btn-success;
+    color: #fff;
+
+    &:hover {
+      background: @color-bg--btn-success-hover;
+    }
+  }
+
+  &.success.outline {
+    background: #fff;
+    border-color: @color-border--success;
+    color: @color-border--success;
+
+    &:hover {
+      border-color: @color-border--success-hover;
+      color: @color-border--success-hover;
+    }
+  }
+
+  &.destructive.outline {
+    background: #fff;
+    border-color: @color-border--destructive;
+    color: @color-border--destructive;
+
+    &:hover {
+      border-color: @color-border--destructive-hover;
+      color: @color-border--destructive-hover;
     }
   }
 }
