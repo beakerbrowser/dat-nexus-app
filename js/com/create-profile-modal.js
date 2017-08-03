@@ -1,5 +1,4 @@
 const html = require('choo/html')
-const {getViewProfileURL, getAvatarUrl} = require('../util')
 
 module.exports = function createProfileModal (state, emit, profile) {
   return html`
