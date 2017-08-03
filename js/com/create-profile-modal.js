@@ -2,7 +2,7 @@ const html = require('choo/html')
 
 module.exports = function createProfileModal (state, emit, profile) {
   return html`
-    <div class="modal register" onsubmit=${onSubmit}>
+    <form class="modal register" onsubmit=${onSubmit}>
       <div class="modal-content">
         <div class="modal-header">
           Create a profile
