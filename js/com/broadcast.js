@@ -7,19 +7,24 @@ module.exports = function renderBroadcast (emit, broadcast) {
     return ''
   }
   return html`
-    <li class="broadcast">
-      <a href=${getViewProfileURL(broadcast.author)}><img src=${getAvatarUrl(broadcast.author)} class="avatar" style=${getAvatarStyle(broadcast.author)}/></a>
-      <div class="container">
+    <div hre=${getViewBroadcastURL(broadcast)} class="broadcast">
+      <a class="avatar-container" href=${getViewProfileURL(broadcast.author)}>
+        <img src=${getAvatarUrl(broadcast.author)} class="avatar" style=${getAvatarStyle(broadcast.author)}/>
+      </a>
+
+      <div class="main-container">
         <div class="metadata">
           <a href=${getViewProfileURL(broadcast.author)} class="name">${broadcast.author.name}</span>
           <a href=${getViewBroadcastURL(broadcast)} target="_blank"><span class="date">${niceDate(broadcast.createdAt)}</span></a>
         </div>
+
         <p class="content">${broadcast.text}</p>
+
         <div class="controls">
-          <a class="count" href=${getViewBroadcastURL(broadcast)}><i class="fa fa-comment-o"></i> 0</a>
+          <a class="action comment" href=${getViewBroadcastURL(broadcast)}><i class="fa fa-comment-o"></i></a>
           ${renderLikeBtn(emit, broadcast)}
         </div>
       </div>
-    </li>
+    </div>
   `
 }

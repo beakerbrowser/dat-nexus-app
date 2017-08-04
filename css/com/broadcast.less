@@ -1,17 +1,32 @@
 .broadcast {
   &:extend(.flex);
   flex-wrap: nowrap;
-  padding: @padding-component--tight;
-  border: 1px solid #ddd;
+  background: #fff;
+  padding: 10px;
+  border: 1px solid @color-border--card;
 
-  .metadata * {
-    line-height: 100%;
-    vertical-align: top;
+  &:hover {
+    background: @color-bg--hover;
+  }
+
+  .avatar-container {
+    margin-right: 10px;
+  }
+
+  .main-container {
+    flex: 1;
+
+    > * {
+      display: block;
+    }
+  }
+
+  .metadata {
+
   }
 
   .name {
-    &:extend(.link);
-    cursor: pointer;
+    font-weight: 600;
 
     &:hover {
       &:extend(.link:hover);
@@ -19,7 +34,7 @@
   }
 
   .date {
-    color: @color-text--muted;
+    color: @color-text--transparent;
     cursor: pointer;
     margin-left: 3px;
 
@@ -28,36 +43,43 @@
     }
   }
 
-  .container {
-    margin: 0 @padding-component--tight;
-  }
-
   .content {
-    margin: 0.5rem 0 0.5rem;
+    margin: 3px 0 10px 0;
+    color: @color-text--muted;
   }
 
   .controls {
-    a {
-      color: #777;
-      cursor: pointer;
+    cursor: pointer;
 
-      &:hover {
-        color: @blue;
-      }
+    .fa-comment-o:hover {
+      color: @color-text--btn;
     }
-    .count {
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-    .like-action {
-      position: relative;
-      top: 1px;
-      font-size: 17px;
-      margin-left: 30px;
 
-      &:hover {
-        color: @orange;
+    .fa-star-o,
+    .fa-comment-o {
+      color: @color-text--transparent;
+    }
+
+    .action {
+      width: 55px;
+      display: inline-block;
+
+      &.like {
+        color: @color-text--transparent !important;
+        position: relative;
+        font-size: 16px;
+        bottom: -1px;
+
+        i.fa-star,
+        &:hover i {
+          color: @orange;
+          color: @color-text--warning;
+        }
+      }
+
+      .count {
+        font-weight: 700;
+        font-size: .8rem;
       }
     }
   }
