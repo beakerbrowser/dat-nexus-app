@@ -3,11 +3,11 @@ const html = require('choo/html')
 module.exports = function renderFollowBtn (state, emit, profile) {
   if (profile.isFollowed) {
     return html`
-      <button id="follow-toggle" class="btn primary" onmouseout=${onShowFollowingButton} onmouseover=${onShowUnfollowButton} onclick=${toggleFollow}>Following<i class="fa fa-check"></i></button>
+      <button id="follow-toggle" class="btn center" onmouseout=${onShowFollowingButton} onmouseover=${onShowUnfollowButton} onclick=${toggleFollow}>Following<i class="fa fa-check"></i></button>
     `
   } else {
     return html`
-      <button id="follow-toggle" class="btn primary outline" onclick=${toggleFollow}>Follow<i class="fa fa-plus"></i></button>
+      <button id="follow-toggle" class="btn primary center" onclick=${toggleFollow}>Follow<i class="fa fa-plus"></i></button>
     `
   }
 

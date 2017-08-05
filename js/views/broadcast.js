@@ -4,7 +4,7 @@ const html = require('choo/html')
 const loadingView = require('./loading')
 const renderError = require('../com/error')
 const renderBroadcast = require('../com/broadcast')
-const renderProfile = require('../com/profile')
+const renderProfile = require('../com/profile-card')
 
 module.exports = function broadcastView (state, emit) {
   if (!state.isAppLoaded) {

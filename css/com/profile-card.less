@@ -1,8 +1,23 @@
 .profile-card {
   &:extend(.card);
-  min-width: 100px;
-  max-width: 350px;
+  width: 100%;
   padding: 15px;
+
+  .avatar-container {
+    height: 75px;
+  }
+
+  .avatar {
+    width: 75px;
+    height: 75px;
+  }
+
+  .description {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: @color-text--muted;
+    font-size: .85rem;
+  }
 }
 
 .profile-card-header {
@@ -17,16 +32,69 @@
 }
 
 .profile-card-info {
+  flex: 1;
+  margin-left: 10px;
 
   .name {
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: 600;
-    margin-bottom: 5px;
     line-height: 100%;
+    margin-bottom: 5px;
+  }
+}
+
+.profile-card-stats {
+  &:extend(.flex);
+  flex-wrap: nowrap;
+  color: @color-text--muted;
+
+  > * {
+    padding-right: 5px;
+  }
+
+  .stat {
+    border-bottom: 1px solid transparent;
+    font-size: .75rem;
+
+    &:hover {
+      &:extend(.link:hover);
+    }
+  }
+}
+
+// TODO get rid of
+.profile-sidebar {
+  padding: 10px !important;
+
+  .profile-card-header {
+    margin-bottom: 5px;
+  }
+
+  .edit-btn {
+    color: @color-text--transparent;
+    line-height: 100%;
+
+    &:hover {
+      color: @color-text;
+    }
+  }
+
+  .profile-card-info {
+    flex: 1;
+    margin-left: 10px;
+  }
+
+  .name {
+    font-size: .9rem;
+
+    &:hover {
+      &:extend(.link:hover);
+    }
   }
 
   .description {
-    margin: 0;
+    margin: 5px 0 15px 0;
     color: @color-text--muted;
+    font-size: .75rem;
   }
 }

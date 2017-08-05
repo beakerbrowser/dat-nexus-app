@@ -20,9 +20,19 @@
 
 .main-content {
   flex: 1;
+  max-width: 500px;
+  margin: auto;
 
   @media (min-width: @desktop) {
-    width: 600px;
+    width: 100%;
     margin-left: 345px;
+
+    &:not(.center) {
+      max-width: initial;
+    }
+  }
+
+  &.center {
+    margin: auto !important;
   }
 }

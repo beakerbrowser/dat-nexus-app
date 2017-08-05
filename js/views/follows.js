@@ -2,7 +2,7 @@ const html = require('choo/html')
 const loadingView = require('./loading')
 const renderError = require('../com/error')
 const renderFollows = require('../com/follows')
-const renderProfile = require('../com/profile')
+const renderProfile = require('../com/profile-card')
 
 module.exports = function followsView (state, emit) {
   if (!state.userProfile) {
