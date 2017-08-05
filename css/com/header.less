@@ -1,0 +1,35 @@
+header {
+  position: fixed;
+  width: 100%;
+  background: @color-text;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  padding: 5px 0;
+  font-weight: 600;
+
+  .fa-home {
+    margin-right: 5px;
+  }
+
+  .btn {
+    color: #fff;
+    font-size: inherit;
+  }
+
+  .container {
+    &:extend(.flex);
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+  }
+
+  .avatar-card {
+    border-radius: 4px;
+
+    &:hover {
+      background: rgba(255,255,255,.1);
+    }
+  }
+}
