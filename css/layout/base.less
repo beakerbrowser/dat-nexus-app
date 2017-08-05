@@ -1,0 +1,28 @@
+// the main layout for all pages
+
+.main-container {
+  &:extend(.flex);
+  padding: 75px 10px 30px 10px;
+  margin: auto;
+  max-width: 900px;
+}
+
+.sidebar {
+  position: fixed;
+  width: 325px;
+  margin-right: 20px;
+  visibility: hidden;
+
+  @media (min-width: @desktop) {
+    visibility: visible;
+  }
+}
+
+.main-content {
+  flex: 1;
+
+  @media (min-width: @desktop) {
+    width: 600px;
+    margin-left: 345px;
+  }
+}
