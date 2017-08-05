@@ -15,54 +15,8 @@
 @import "./com/broadcast";
 @import "./com/feed";
 @import "./com/profile-card";
-@import "./com/post-form";
+@import "./com/new-post";
 @import "./com/forms";
 @import "./com/follow-toggle";
 @import "./com/avatar";
-
-body {
-  overflow: auto;
-}
-
-main {
-  width: 780px;
-  margin: 0 auto;
-}
-
-.grid {
-  &:extend(.flex);
-  flex-wrap: nowrap;
-  margin-top: @padding-component--thick;
-}
-
-.feed-container {
-  width: 70%;
-  padding-right: @padding-component--thick;
-
-  & > :first-child {
-    margin-top: 0;
-  }
-}
-
-.follows {
-  .profile {
-    margin-top: 10px;
-  }
-}
-
-
-.sidebar {
-  background: #fff;
-  width: 30%;
-
-  .buttons {
-    margin-bottom: @padding-component--tight;
-
-    i {
-      cursor: pointer;
-      margin-left: @margin-icon;
-    }
-  }
-
-}
-
+@import "./com/avatar-card";
