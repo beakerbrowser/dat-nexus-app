@@ -7,12 +7,12 @@ module.exports = function renderBroadcast (emit, broadcast) {
     return ''
   }
   return html`
-    <div hre=${getViewBroadcastURL(broadcast)} class="broadcast">
+    <div class="broadcast">
       <a class="avatar-container" href=${getViewProfileURL(broadcast.author)}>
         <img src=${getAvatarUrl(broadcast.author)} class="avatar" style=${getAvatarStyle(broadcast.author)}/>
       </a>
 
-      <div class="main-container">
+      <div class="broadcast-container">
         <div class="metadata">
           <a href=${getViewProfileURL(broadcast.author)} class="name">${broadcast.author.name}</span>
           <a href=${getViewBroadcastURL(broadcast)} target="_blank"><span class="date">${niceDate(broadcast.createdAt)}</span></a>

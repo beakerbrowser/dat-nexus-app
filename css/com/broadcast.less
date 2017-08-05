@@ -1,19 +1,22 @@
 .broadcast {
   &:extend(.flex);
   flex-wrap: nowrap;
-  background: #fff;
-  padding: 10px;
-  border: 1px solid @color-border--card;
+  padding: 15px 10px;
+  border-bottom: 1px solid @color-border--card;
 
-  &:hover {
-    background: @color-bg--hover;
+  &:first-child {
+    border-radius: 4px 4px 0 0;
   }
 
+  &:last-child {
+    border-radius: 0 0 4px 4px;
+    border-bottom: 0;
+  }
   .avatar-container {
     margin-right: 10px;
   }
 
-  .main-container {
+  .broadcast-container {
     flex: 1;
 
     > * {
@@ -34,6 +37,7 @@
   }
 
   .date {
+    font-size: .8rem;
     color: @color-text--transparent;
     cursor: pointer;
     margin-left: 3px;
@@ -49,8 +53,6 @@
   }
 
   .controls {
-    cursor: pointer;
-
     .fa-comment-o:hover {
       color: @color-text--btn;
     }
