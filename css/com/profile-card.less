@@ -1,18 +1,14 @@
 .profile-card {
-  // TODO
-  // &:extend(.card);
+  &:extend(.card);
   min-width: 100px;
   max-width: 350px;
   padding: 15px;
-  background: #fff;
-  border: 1px solid @color-border--card;
-  border-radius: 4px;
 }
 
 .profile-card-header {
   &:extend(.flex);
+  flex-wrap: nowrap;
   justify-content: space-between;
-  align-items: top;
   margin-bottom: 10px;
 
   .btn {
@@ -26,6 +22,7 @@
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 5px;
+    line-height: 100%;
   }
 
   .description {
