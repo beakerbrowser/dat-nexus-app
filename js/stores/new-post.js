@@ -1,5 +1,14 @@
 module.exports = function newPostStore (state, emitter) {
   state.newPostText = ''
+  state.isFooterVisible = false
+  emitter.on('show-footer', () => {
+    state.isFooterVisible = true
+    emitter.emit('render')
+  })
+  emitter.on('hide-footer', () => {
+    state.isFooterVisible = false
+    emitter.emit('render')
+  })
   emitter.on('change-post-text', text => {
     state.newPostText = text
     emitter.emit('render')
