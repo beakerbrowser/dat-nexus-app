@@ -46,7 +46,8 @@ exports.getViewProfileURL = function (profile) {
 
 exports.getEditProfileURL = function (profile) {
   var url = profile._origin ? profile._origin : profile
-  return '/#profile/' + url.slice('dat://'.length) + '/edit'
+  return '/#settings'
+  // return '/#profile/' + url.slice('dat://'.length) + '/edit'
 }
 
 exports.getViewFollowsURL = function (profile) {
