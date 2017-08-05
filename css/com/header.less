@@ -8,16 +8,22 @@ header {
   padding: 5px 0;
   font-weight: 600;
 
+  .links {
+    height: 100%;
+  }
+
   .fa-home {
     margin-left: 0 !important;
     margin-right: 5px;
   }
 
   .btn {
+    &:extend(.flex);
+    align-items: center;
+    height: 100%;
     color: #fff;
     font-size: inherit;
-    line-height: 2;
-    padding: 5px;
+    padding: 0 5px;
   }
 
   .container {
