@@ -3,18 +3,20 @@ const {getViewProfileURL, getAvatarUrl} = require('../util')
 
 module.exports = function renderProfileEditor (state, emit, profile) {
   return html`
-    <div class="profile">
+    <div class="profile-card profile-sidebar">
       <img class="avatar" src=${getAvatarUrl(profile)} />
       <div class="profile-info edit">
         <form onsubmit=${onSubmit}>
           <p>
-            <label for="name">Your name</label>
+            <label for="name">Name</label>
             <input id="name" name="name" type="text" autofocus value=${profile ? profile.name : ''} />
           </p>
+
           <p>
-            <label for="bio">Your bio</label>
+            <label for="bio">Bio</label>
             <textarea id="bio" name="bio" placeholder="Optional">${profile ? profile.bio : ''}</textarea>
           </p>
+
           <p>
             <a href=${getViewProfileURL(profile)} class="btn">Cancel</a>
             <button type="submit" class="btn primary">Save</button>
