@@ -27,7 +27,6 @@ module.exports = function profileView (state, emit) {
         <div class="feed-container">
           ${renderError(state, emit)}
           <p><a href="#"><i class="fa fa-caret-left"></i> Back to feed</a></p>
-          <h2>${state.currentProfile.name + "'"}s broadcasts</h2>
           ${renderFeed(state, emit)}
         </div>
         <div class="sidebar">
