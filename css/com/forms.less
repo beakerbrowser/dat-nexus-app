@@ -1,5 +1,12 @@
 form {
 
+  p {
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
 }
 
 input,
@@ -9,9 +16,10 @@ textarea {
   border-radius: 4px;
   width: 100%;
   transition: border 0.1s linear, background-color 0.1s linear;
-  padding: 1px 7px;
-  line-height: 1.875rem;
+  padding: 5px 7px;
+  height: 28px;
   font-size: .8rem;
+  color: @color-text--muted;
 
   &:not(:last-child) {
     margin-bottom: 15px;
@@ -22,8 +30,13 @@ textarea {
   }
 }
 
+textarea {
+  resize: none;
+  min-height: 65px;
+}
+
 label {
   display: block;
   margin-bottom: 5px !important;
-  font-size: .85rem;
+  font-size: .8rem;
 }
