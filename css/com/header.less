@@ -1,6 +1,7 @@
 header {
   position: fixed;
   width: 100%;
+  height: 45px;
   background: @color-text;
   color: #fff;
   -webkit-font-smoothing: antialiased;
@@ -8,12 +9,15 @@ header {
   font-weight: 600;
 
   .fa-home {
+    margin-left: 0 !important;
     margin-right: 5px;
   }
 
   .btn {
     color: #fff;
     font-size: inherit;
+    line-height: 2;
+    padding: 5px;
   }
 
   .container {
@@ -21,8 +25,10 @@ header {
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    height: 100%;
     max-width: 900px;
     margin: auto;
+    padding: 0 10px;
   }
 
   .avatar-card {
