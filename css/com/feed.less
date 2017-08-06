@@ -1,3 +1,13 @@
 .feed {
   &:extend(.card);
+
+  &:empty {
+    padding: 15px;
+
+    &:before {
+      display: block;
+      content: 'No broadcasts';
+      font-style: italic;
+    }
+  }
 }
