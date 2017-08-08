@@ -28,7 +28,7 @@ module.exports = function broadcastView (state, emit) {
             <i class="fa fa-caret-left"></i>
             Back to ${author.name}'s feed
           </a>
-          ${renderBroadcast(emit, state.currentBroadcast)}
+          ${renderBroadcast(state, emit, state.currentBroadcast)}
         </div>
       </div>
     </main>
