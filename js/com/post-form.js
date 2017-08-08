@@ -11,7 +11,7 @@ module.exports = function renderPostForm (state, emit) {
       <div class="main">
         ${renderAvatar(state.userProfile)}
 
-        <textarea class=${textareaCls} onkeyup=${onChangePostText} onfocus=${onFocus} onblur=${onBlur} placeholder="What's new?">${state.newPostText}</textarea>
+        <textarea rows=${state.textareaRows} class="editor ${textareaCls}" onkeyup=${onChangePostText} onfocus=${onFocus} onblur=${onBlur} placeholder="What's new?">${state.newPostText}</textarea>
       </div>
 
       <div class="footer ${state.isFooterVisible ? 'visible' : ''}">

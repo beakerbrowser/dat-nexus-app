@@ -1,6 +1,7 @@
 module.exports = function newPostStore (state, emitter) {
   state.newPostText = ''
   state.isFooterVisible = false
+  state.textareaRows = 2
   emitter.on('show-footer', () => {
     state.isFooterVisible = true
     emitter.emit('render')
@@ -11,6 +12,7 @@ module.exports = function newPostStore (state, emitter) {
   })
   emitter.on('change-post-text', text => {
     state.newPostText = text
+    state.textareaRows = text.split('\n').length || 2
     emitter.emit('render')
   })
   emitter.on('submit-post', async () => {
