@@ -16,7 +16,7 @@ module.exports = function mainView (state, emit) {
     state.loadMainFeed()
   }
   if (!state.userProfile) {
-    return renderCreateProfileModal(state, emit)
+    return html`<main>${renderCreateProfileModal(state, emit)}</main>`
   }
   return html`
     <main>
