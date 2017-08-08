@@ -1,5 +1,6 @@
 module.exports = function broadcastsStore (state, emitter) {
   state.currentBroadcast = null
+  state.expandedBroadcasts = []
 
   emitter.on('pushState', () => {
     // clear page state

@@ -103,3 +103,59 @@
     }
   }
 }
+
+.broadcast-content {
+  &:extend(.flex);
+  flex-wrap: nowrap;
+  padding: 15px 10px;
+}
+
+.comments {
+  background: @color-bg;
+  border-top: 1px solid @color-border;
+  font-size: .8rem;
+  padding: 15px 10px;
+
+  .avatar {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+  }
+}
+
+.comments-editor {
+  &:extend(.flex);
+  flex-wrap: nowrap;
+  padding-bottom: 10px;
+
+  .avatar {
+    width: 30px;
+  }
+
+  .avatar,
+  textarea {
+    height: 30px;
+  }
+
+  textarea {
+    flex: 1;
+    min-height: initial;
+    padding-top: 6px;
+  }
+}
+
+.comment {
+
+  > * {
+    display: inline-block;
+  }
+
+  .author {
+    &:extend(.link);
+  }
+
+  .content {
+    line-height: 100%;
+    vertical-align: top;
+  }
+}
