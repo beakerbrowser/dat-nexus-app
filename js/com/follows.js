@@ -13,7 +13,7 @@ module.exports = function renderFollows (state, emit, profile) {
   } else {
     return html`
       <p class="follows">
-        Not following anybody.
+        ${state.userProfile.name} isn't following anyone.
       </p>
     `
   }
@@ -21,21 +21,20 @@ module.exports = function renderFollows (state, emit, profile) {
 
 function renderFollow (state, emit, profile) {
   return html`
-    <div class="profile-card">
+    <div class="profile-card minimal">
       <div class="profile-card-header">
         <a href=${getViewProfileURL(profile)}>
           ${renderAvatar(profile)}
         </a>
 
-        ${renderFollowBtn(state, emit, profile)}
+        <div class="profile-card-info">
+          <h2 class="name">
+            <a href=${getViewProfileURL(profile)}>${profile.name}</a>
+          </h2>
+        </div>
       </div>
-
-      <div class="profile-card-info">
-        <h2 class="name">
-          <a href=${getViewProfileURL(profile)}>${profile.name}</a>
-        </h2>
-        <p class="description">Programmer 💻. Antifa. Vegetarian. Austin, TX</p>
-      </div>
+      ${profile.bio ? html`<p class="description">${profile.bio}</p>` : ''}
+      ${renderFollowBtn(state, emit, profile)}
     </div>
   `
 }
