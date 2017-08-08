@@ -1,7 +1,8 @@
 const html = require('choo/html')
 const renderFollowBtn = require('./follow-btn')
+const renderAvatar = require('./avatar')
 const renderEditProfileBtn = require('./edit-profile-btn')
-const {getViewProfileURL, getAvatarUrl, getAvatarStyle, getViewFollowsURL, getEditProfileURL, pluralize} = require('../util')
+const {getViewProfileURL, getViewFollowsURL, getEditProfileURL, pluralize} = require('../util')
 
 module.exports = function renderProfileCard (state, emit, profile) {
   if (!profile) {
@@ -14,7 +15,7 @@ module.exports = function renderProfileCard (state, emit, profile) {
     <div class="profile-card">
       <div class="profile-card-header">
         <a class="avatar-container" href=${getViewProfileURL(profile)}>
-          <img class="avatar" src=${getAvatarUrl(profile)} style=${getAvatarStyle(profile)} />
+          ${renderAvatar(profile)}
         </a>
 
         <div class="profile-card-info">
