@@ -106,6 +106,23 @@ module.exports = async function profileStore (state, emitter) {
     }
     emitter.emit('pushState', getViewProfileURL(state.userProfile))
   }
+
+  state.setAvatar = async (archive, file) => {
+    // get file extension
+    if (!file.type.startsWith('image/')) {
+      // TODO wrong image type
+      return
+    }
+    const extension = file.type.slice('image/'.length)
+    const reader = new FileReader()
+    reader.onload = async () => {
+      await state.DB().setAvatar(archive, reader.result, extension)
+    }
+    reader.readAsArrayBuffer(file)
+
+    emitter.emit('pushState', getViewProfileURL(state.userProfile))
+    emitter.emit('render')
+  }
 }
 
 async function readProfile (state, url, opts = {}) {

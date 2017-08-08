@@ -1,12 +1,16 @@
 const html = require('choo/html')
-const {getViewProfileURL, getAvatarUrl} = require('../util')
+const {getViewProfileURL, getAvatarStyle} = require('../util')
 
 module.exports = function renderProfileEditor (state, emit, profile) {
   return html`
     <div class="profile-card profile-sidebar">
-      <img class="avatar" src=${getAvatarUrl(profile)} />
       <div class="profile-info edit">
         <form onsubmit=${onSubmit}>
+          <div class="avatar avatar-editor" style=${getAvatarStyle(profile)}>
+            <input type="file" accept="image/*"/>
+            <i class="fa fa-picture-o"></i>
+          </div>
+          <input name="avatar" type="hidden"/>
           <p>
             <label for="name">Name</label>
             <input id="name" name="name" type="text" autofocus value=${profile ? profile.name : ''} />
@@ -26,11 +30,20 @@ module.exports = function renderProfileEditor (state, emit, profile) {
     </div>
   `
 
-  function onSubmit (e) {
+  async function onSubmit (e) {
     e.preventDefault()
+
     state.updateProfile({
       name: e.target.name.value || '',
-      bio: e.target.bio.value || ''
+      bio: e.target.bio.value || '',
+      avatar: profile.avatar || ''
     })
+
+    const avatarInput = document.querySelector('input[type="file"]')
+    const archive = new DatArchive(profile._url)
+    if (avatarInput.files.length) {
+      state.setAvatar(archive, avatarInput.files[0])
+      emit('render')
+    }
   }
 }
