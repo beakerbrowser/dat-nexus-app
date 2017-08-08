@@ -18,6 +18,7 @@ module.exports = function broadcastView (state, emit) {
   } else {
     var author = state.currentBroadcast.author
   }
+  state.expandedBroadcasts.push(state.currentBroadcast._url)
   return html`
     <main>
       ${renderHeader(state, emit, state.userProfile)}
@@ -28,6 +29,10 @@ module.exports = function broadcastView (state, emit) {
             <i class="fa fa-caret-left"></i>
             Back to ${author.name}'s feed
           </a>
+          ${state.currentBroadcastParent
+            ? renderBroadcast(state, emit, state.currentBroadcastParent, true)
+            : ''
+          }
           ${renderBroadcast(state, emit, state.currentBroadcast)}
         </div>
       </div>

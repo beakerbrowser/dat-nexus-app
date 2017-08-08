@@ -4,13 +4,13 @@ const renderAvatar = require('./avatar')
 const renderComments = require('./comments')
 const {getViewProfileURL, getViewBroadcastURL, niceDate, pluralize} = require('../util')
 
-module.exports = function renderBroadcast (state, emit, broadcast) {
+module.exports = function renderBroadcast (state, emit, broadcast, isParent) {
   if (!broadcast.text) {
     return ''
   }
   var commentsExpanded = state.expandedBroadcasts.indexOf(broadcast._url) !== -1
   return html`
-    <div class="broadcast">
+    <div class="broadcast ${isParent ? 'parent' : ''}">
       <div class="broadcast-content">
         <a class="avatar-container" href=${getViewProfileURL(broadcast.author)}>
           ${renderAvatar(broadcast.author)}

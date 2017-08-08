@@ -9,7 +9,7 @@ module.exports = function commentsStore (state, emitter) {
       // add the comment, which is just a broadcast
       await state.DB().broadcast(
         state.userProfile._origin,
-        {text: state.commentText, threadRoot: parent._url})
+        {text: state.commentText, threadRoot: parent._url, threadParent: parent._url})
       state.userProfile.numBroadcasts++
     } catch (e) {
       console.error(e)

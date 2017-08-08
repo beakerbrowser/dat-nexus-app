@@ -159,3 +159,21 @@
     vertical-align: top;
   }
 }
+
+.broadcast.parent {
+  position: relative;
+  margin-bottom: 70px;
+  overflow: initial;
+
+  &:after {
+    display: block;
+    content: '';
+    position: absolute;
+    left: 15px;
+    bottom: -60px;
+    width: 5px;
+    background: @color-border;
+    border-radius: 10px;
+    height: 50px;
+  }
+}
