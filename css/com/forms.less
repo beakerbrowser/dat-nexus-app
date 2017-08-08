@@ -10,11 +10,13 @@ form {
 }
 
 input,
-textarea {
+textarea,
+[contenteditable] {
   display: block;
   border: 1px solid @color-border--input;
   border-radius: 4px;
   width: 100%;
+  min-height: 32px;
   transition: border 0.1s linear, background-color 0.1s linear;
   padding: 5px 7px;
   height: 28px;
