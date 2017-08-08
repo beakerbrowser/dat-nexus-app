@@ -44,7 +44,6 @@ module.exports = function renderBroadcast (state, emit, broadcast) {
     var idx = state.expandedBroadcasts.indexOf(broadcast._url)
     if (idx === -1) {
       state.expandedBroadcasts.push(broadcast._url)
-      console.log('expandedBroadcasts', state.expandedBroadcasts)
     } else {
       state.expandedBroadcasts.splice(idx, 1)
     }
