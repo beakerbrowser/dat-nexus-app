@@ -53,35 +53,52 @@
   }
 
   .controls {
+    &:extend(.flex);
+    justify-content: space-between;
+    border-top: 1px solid @color-border;
+    padding: 5px 0;
+    margin: 0 10px;
+    font-size: .75rem;
+    color: @color-text--transparent;
+
+    i {
+      margin-right: 4px;
+      color: @color-text--transparent;
+    }
+
     .fa-comment-o:hover {
       color: @color-text--btn;
     }
 
-    .fa-star-o,
-    .fa-comment-o {
-      color: @color-text--transparent;
+    button {
+      padding: 0;
     }
 
     .action {
-      width: 55px;
+      cursor: pointer;
       display: inline-block;
+
+      &.comment {
+
+        &:hover {
+          &:extend(.link:hover);
+        }
+      }
 
       &.like {
         color: @color-text--transparent !important;
         position: relative;
-        font-size: 16px;
-        bottom: -1px;
+
+        i {
+          bottom: -1px;
+          font-size: 16px;
+        }
 
         i.fa-star,
         &:hover i {
           color: @orange;
           color: @color-text--warning;
         }
-      }
-
-      .count {
-        font-weight: 700;
-        font-size: .8rem;
       }
     }
   }
