@@ -6,7 +6,7 @@ module.exports = function loadingView (state, emit) {
     <main>
       <div class="grid">
         <div class="feed-container">
-          ${state.error ? renderError(state, emit) : 'Loading...'}
+          ${state.error ? renderError(state, emit) : html`<div class="card"><p><i class="fa fa-spinner"></i>Loading...</p></div>`}
         </div>
       </div>
     </main>
