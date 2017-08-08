@@ -11,6 +11,6 @@ module.exports = function renderFeed (state, emit) {
   }
 
   return html`
-    <ul class="feed">${state.broadcasts.map(b => renderBroadcast(emit, b))}</ul>
+    <ul class="feed">${state.broadcasts.map(b => renderBroadcast(state, emit, b))}</ul>
   `
 }
