@@ -1,6 +1,7 @@
 const html = require('choo/html')
 const renderFollowBtn = require('./follow-btn')
-const {getViewProfileURL, getAvatarUrl, getAvatarStyle} = require('../util')
+const renderAvatar = require('./avatar')
+const {getViewProfileURL} = require('../util')
 
 module.exports = function renderFollows (state, emit, profile) {
   if (profile.followProfiles.length) {
@@ -23,7 +24,7 @@ function renderFollow (state, emit, profile) {
     <div class="profile-card">
       <div class="profile-card-header">
         <a href=${getViewProfileURL(profile)}>
-          <img class="avatar" src=${getAvatarUrl(profile)} style=${getAvatarStyle(profile)} />
+          ${renderAvatar(profile)}
         </a>
 
         ${renderFollowBtn(state, emit, profile)}

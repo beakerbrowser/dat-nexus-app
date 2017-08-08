@@ -25,7 +25,7 @@ exports.setUserProfileURL = function (url) {
   localStorage.userProfileURL = url
 }
 
-exports.getAvatarUrl = function (profile) {
+exports.getAvatarURL = function (profile) {
   if (profile && profile.avatar) {
     return profile._origin + profile.avatar
   }
@@ -34,6 +34,9 @@ exports.getAvatarUrl = function (profile) {
 
 exports.getAvatarStyle = function (profile) {
   // derive a fallback color from the author's URL (hey, why not)
+  if (profile && profile.avatar) {
+    return 'background-image: url(' + profile._origin + profile.avatar + ')'
+  }
   const color = profile._origin.slice('dat://'.length, 'dat://'.length + 6)
   return 'background-color: #' + color
 }

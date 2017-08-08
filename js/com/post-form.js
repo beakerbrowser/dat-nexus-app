@@ -1,5 +1,6 @@
 const html = require('choo/html')
-const {getViewProfileURL, getAvatarUrl, getAvatarStyle} = require('../util')
+const renderAvatar = require('./avatar')
+const {getViewProfileURL} = require('../util')
 
 module.exports = function renderPostForm (state, emit) {
   var textareaCls = state.newPostText ? 'has-content' : ''
@@ -8,7 +9,7 @@ module.exports = function renderPostForm (state, emit) {
       <div class="header">Post a broadcast</div>
 
       <div class="main">
-        <img class="avatar" src=${getAvatarUrl(state.userProfile)}/>
+        ${renderAvatar(state.userProfile)}
 
         <textarea class=${textareaCls} onkeyup=${onChangePostText} onfocus=${onFocus} onblur=${onBlur} placeholder="What's new?">${state.newPostText}</textarea>
       </div>
