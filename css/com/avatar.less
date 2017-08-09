@@ -1,18 +1,46 @@
 .avatar {
+  position: relative;
   width: 45px;
   height: 45px;
   border-radius: 2px;
   background-size: cover;
+  overflow: hidden;
 }
 
 .avatar-editor {
   position: relative;
 
+  &:hover {
+
+    .icon-container {
+      background: rgba(255,255,255,.3);
+    }
+  }
+
   input {
-    position: absolute;
+    cursor: pointer;
+    z-index: 1000;
     opacity: 0;
+  }
+
+  input,
+  .icon-container {
+    position: absolute;
     width: 100%;
     height: 100%;
   }
-}
 
+  .icon-container {
+    &:extend(.flex);
+    align-items: center;
+    background: rgba(255,255,255,.1);
+    transition: background .2s ease;
+  }
+
+  i {
+    font-size: 35px;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,.8);
+    margin: auto;
+  }
+}

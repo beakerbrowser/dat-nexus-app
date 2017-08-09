@@ -2,13 +2,17 @@ const html = require('choo/html')
 const {getViewProfileURL, getAvatarStyle} = require('../util')
 
 module.exports = function renderProfileEditor (state, emit, profile) {
+  var avatarStyle = state.tmpAvatarURL ? `background-image: url(${state.tmpAvatarURL})` : getAvatarStyle(profile)
   return html`
     <div class="profile-card profile-sidebar">
       <div class="profile-info edit">
         <form onsubmit=${onSubmit}>
-          <div class="avatar avatar-editor" style=${getAvatarStyle(profile)}>
-            <input type="file" accept="image/*"/>
-            <i class="fa fa-picture-o"></i>
+          <label>Update your avatar</label>
+          <div class="avatar avatar-editor" style=${avatarStyle}>
+            <input type="file" accept="image/*" onchange=${onChangeAvatar} />
+            <div class="icon-container">
+              <i class="fa fa-picture-o"></i>
+            </div>
           </div>
           <input name="avatar" type="hidden"/>
           <p>
@@ -30,6 +34,18 @@ module.exports = function renderProfileEditor (state, emit, profile) {
     </div>
   `
 
+  async function onChangeAvatar (e) {
+    if (e.target.files) {
+      const reader = new FileReader()
+      reader.onload = () => {
+        state.tmpAvatar = e.target.files[0]
+        state.tmpAvatarURL = reader.result
+        emit('render')
+      }
+      reader.readAsDataURL(e.target.files[0])
+    }
+  }
+
   async function onSubmit (e) {
     e.preventDefault()
 
@@ -39,10 +55,9 @@ module.exports = function renderProfileEditor (state, emit, profile) {
       avatar: profile.avatar || ''
     })
 
-    const avatarInput = document.querySelector('input[type="file"]')
     const archive = new DatArchive(profile._url)
-    if (avatarInput.files.length) {
-      state.setAvatar(archive, avatarInput.files[0])
+    if (state.tmpAvatar) {
+      state.setAvatar(archive, state.tmpAvatar)
       emit('render')
     }
   }

@@ -18,6 +18,11 @@ module.exports = function createProfileModal (state, emit, profile) {
 
         <div class="modal-main">
           <div class="content">
+            <div class="avatar avatar-editor">
+              <input type="file" accept="image/*"/>
+              <i class="fa fa-picture-o"></i>
+            </div>
+
             <label for="name">Your name</label>
             <input type="text" name="name" placeholder="Jane Smith" value=${profile ? profile.name : ''} onkeyup=${validateName}/>
 
@@ -33,12 +38,20 @@ module.exports = function createProfileModal (state, emit, profile) {
     </form>
   `
 
-  function onSubmit (e) {
+  async function onSubmit (e) {
     e.preventDefault()
-    state.updateProfile({
+    await state.updateProfile({
       name: e.target.name.value || '',
-      bio: e.target.bio.value || ''
+      bio: e.target.bio.value || '',
+      avatar: ''
     })
+
+    const avatarInput = document.querySelector('input[type="file"]')
+    const archive = new DatArchive(state.userProfile._origin)
+    if (avatarInput.files.length) {
+      state.setAvatar(archive, avatarInput.files[0])
+      emit('render')
+    }
   }
 
   function validateName (e) {
