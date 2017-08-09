@@ -4,9 +4,11 @@ module.exports = function broadcastsStore (state, emitter) {
 
   emitter.on('pushState', () => {
     // clear page state
-    state.expandedBroadcasts.splice(state.expandedBroadcasts.indexOf(state.currentBroadcast._url), 1)
-    state.currentBroadcast = null
-    state.currentBroadcastParent = null
+    if (state.currentBroadcast) {
+      state.expandedBroadcasts.splice(state.expandedBroadcasts.indexOf(state.currentBroadcast._url), 1)
+      state.currentBroadcast = null
+      state.currentBroadcastParent = null
+    }
   })
 
   state.loadCurrentBroadcast = async function (url) {

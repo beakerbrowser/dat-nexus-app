@@ -8,7 +8,7 @@ module.exports = function renderBroadcast (state, emit, broadcast, isParent) {
   if (!broadcast.text) {
     return ''
   }
-  var commentsExpanded = state.expandedBroadcasts.indexOf(broadcast._url) !== -1
+  var commentsExpanded = state.expandedBroadcasts.indexOf(broadcast._url) !== -1 && !isParent
   return html`
     <div class="broadcast ${isParent ? 'parent' : ''}">
       <div class="broadcast-content">
@@ -31,7 +31,11 @@ module.exports = function renderBroadcast (state, emit, broadcast, isParent) {
 
         <span class="action comment" onclick=${onToggleComments}>
           ${broadcast.replies && broadcast.replies.length
-            ? pluralize(broadcast.replies.length, 'comment', 's')
+            ? html`
+              <span>
+                ${broadcast.replies.length}
+                ${pluralize(broadcast.replies.length, 'comment', 's')}
+              </span>`
             : 'Write a comment'}
         </span>
       </div>

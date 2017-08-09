@@ -145,6 +145,9 @@
 }
 
 .comment {
+  &:extend(.flex);
+  flex-wrap: nowrap;
+  font-size: .8rem;
 
   > * {
     display: inline-block;
@@ -157,6 +160,13 @@
   .content {
     line-height: 100%;
     vertical-align: top;
+  }
+
+  .footer {
+    display: block;
+    margin-top: 10px;
+    font-size: .75rem;
+    color: @color-text--transparent;
   }
 }
 
