@@ -1,6 +1,6 @@
 module.exports = function commentsStore (state, emitter) {
-  emitter.on('change-comment-text', text => {
-    state.commentText = text
+  emitter.on('change-comment-text', ({parentURL, text}) => {
+    state.commentDrafts[parentURL] = text
     emitter.emit('render')
   })
 
@@ -9,7 +9,7 @@ module.exports = function commentsStore (state, emitter) {
       // add the comment, which is just a broadcast
       await state.DB().broadcast(
         state.userProfile._origin,
-        {text: state.commentText, threadRoot: parent._url, threadParent: parent._url})
+        {text: state.commentDrafts[parent._url], threadParent: parent._url})
       state.userProfile.numBroadcasts++
     } catch (e) {
       console.error(e)
@@ -17,7 +17,7 @@ module.exports = function commentsStore (state, emitter) {
     }
 
     // clear form
-    state.commentText = ''
+    state.commentDrafts[parent._url] = ''
     emitter.emit('render')
     state.loadMainFeed() // TODO?
   })
