@@ -97,7 +97,6 @@ module.exports = async function profileStore (state, emitter) {
 
       // reload
       state.userProfile = await readProfile(state, archive.url, {getFollowProfiles: true})
-      console.log(state.userProfile)
     } catch (e) {
       console.error(e)
       state.error = e

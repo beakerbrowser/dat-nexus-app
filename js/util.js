@@ -59,7 +59,6 @@ exports.getViewFollowsURL = function (profile) {
 }
 
 exports.getViewBroadcastURL = function (broadcast) {
-  console.log('broadcast url', broadcast._url)
   return '/#broadcast/' + broadcast._url.slice('dat://'.length)
 }
 
