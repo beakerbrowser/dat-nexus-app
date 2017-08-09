@@ -40,4 +40,3 @@ module.exports = function renderComments (state, emit, broadcast) {
     emit('change-comment-text', {parentURL: broadcast._url, text: e.target.value})
   }
 }
-
