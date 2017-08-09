@@ -1,4 +1,5 @@
 const html = require('choo/html')
+const debounce = require('debounce')
 const {niceDate, getViewBroadcastURL} = require('../util')
 const renderAvatar = require('./avatar')
 
@@ -9,7 +10,7 @@ module.exports = function renderComments (state, emit, broadcast) {
     <div class="comments">
       <div class="comments-editor">
         ${renderAvatar(state.userProfile)}
-        <textarea onkeypress=${onDetectEnter} onkeyup=${onChangeComment} type="text" placeholder="Write a comment...">${state.commentDrafts[broadcast._url]}</textarea>
+        <textarea onkeypress=${onDetectEnter} onkeyup=${debounce(onChangeComment, 300)} type="text" placeholder="Write a comment...">${state.commentDrafts[broadcast._url]}</textarea>
       </div>
 
       ${replies.map(r => html`
